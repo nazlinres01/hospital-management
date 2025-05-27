@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 import { 
   BarChart3, 
   Users, 
@@ -25,6 +26,7 @@ const navigation = [
 
 export default function Sidebar() {
   const [location] = useLocation();
+  const { user } = useAuth();
 
   return (
     <div className="hidden lg:flex lg:w-72 lg:flex-col">
@@ -82,12 +84,18 @@ export default function Sidebar() {
           <Link href="/profil" className="flex items-center w-full hover:bg-gray-50 rounded-lg p-2 -m-2 transition-colors">
             <div>
               <div className="inline-block h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center">
-                <span className="text-sm font-medium text-white">DM</span>
+                <span className="text-sm font-medium text-white">
+                  {user ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}` : 'U'}
+                </span>
               </div>
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700">Dr. Mehmet Özkan</p>
-              <p className="text-xs text-gray-500">Sistem Yöneticisi</p>
+              <p className="text-sm font-medium text-gray-700">
+                {user ? `${user.firstName} ${user.lastName}` : "Kullanıcı"}
+              </p>
+              <p className="text-xs text-gray-500">
+                {user?.department || "Sistem Kullanıcısı"}
+              </p>
             </div>
           </Link>
         </div>

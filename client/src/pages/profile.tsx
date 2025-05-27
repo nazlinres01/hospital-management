@@ -68,8 +68,11 @@ export default function Profile() {
     updateProfileMutation.mutate(formData);
   };
 
+  const { logout } = useAuth();
+  
   const handleLogout = () => {
-    window.location.href = "/api/logout";
+    logout();
+    window.location.reload();
   };
 
   const getInitials = (firstName?: string, lastName?: string) => {

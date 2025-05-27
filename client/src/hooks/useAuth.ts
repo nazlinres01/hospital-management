@@ -1,23 +1,42 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 
 export function useAuth() {
-  // Demo mode - giriş sayfalarını görmek için geçici olarak false döndürüyoruz
-  return {
-    user: null,
-    isLoading: false,
-    isAuthenticated: false,
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if user is logged in from localStorage
+    const checkAuth = () => {
+      const savedUser = localStorage.getItem('currentUser');
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+        setIsAuthenticated(true);
+      }
+      setIsLoading(false);
+    };
+    
+    checkAuth();
+  }, []);
+
+  const login = (userData: any) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    localStorage.setItem('currentUser', JSON.stringify(userData));
   };
-  
-  /* Gerçek auth sistemi için:
-  const { data: user, isLoading } = useQuery({
-    queryKey: ["/api/auth/user"],
-    retry: false,
-  });
+
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem('currentUser');
+  };
 
   return {
     user,
     isLoading,
-    isAuthenticated: !!user,
+    isAuthenticated,
+    login,
+    logout,
   };
-  */
 }

@@ -16,6 +16,7 @@ import Reports from "@/pages/reports";
 import Landing from "@/pages/landing";
 import Profile from "@/pages/profile";
 import Login from "@/pages/login";
+import Auth from "@/pages/auth";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 
