@@ -26,6 +26,7 @@ function Router() {
       <Route path="/tibbi-kayitlar" component={MedicalRecords} />
       <Route path="/raporlar" component={Reports} />
       <Route path="/ayarlar" component={SettingsPage} />
+      <Route path="/profil" component={Profile} />
       <Route component={NotFound} />
     </Switch>
   );
