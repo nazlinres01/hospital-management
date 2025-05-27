@@ -25,26 +25,27 @@ import { useAuth } from "@/hooks/useAuth";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function Profile() {
-  const { user } = useAuth();
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    email: user?.email || "",
-    phone: "",
-    department: "",
-    title: "",
-    bio: ""
+    firstName: "Mehmet",
+    lastName: "Özkan", 
+    email: "mehmet.ozkan@medsystem.com",
+    phone: "+90 555 123 4567",
+    department: "Sistem Yönetimi",
+    title: "Dr.",
+    bio: "Hastane yönetim sistemi uzmanı"
   });
 
   const updateProfileMutation = useMutation({
     mutationFn: async (data: any) => {
-      return apiRequest("/api/auth/profile", {
+      const response = await fetch("/api/auth/profile", {
         method: "PATCH",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
       });
+      if (!response.ok) throw new Error('Failed to update profile');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
@@ -72,8 +73,8 @@ export default function Profile() {
   };
 
   const getInitials = (firstName?: string, lastName?: string) => {
-    if (!firstName && !lastName) return "U";
-    return `${firstName?.[0] || ""}${lastName?.[0] || ""}`.toUpperCase();
+    if (!firstName && !lastName) return "MÖ";
+    return `${firstName?.[0] || "M"}${lastName?.[0] || "Ö"}`.toUpperCase();
   };
 
   return (
@@ -125,14 +126,14 @@ export default function Profile() {
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <Avatar className="w-24 h-24 mb-4">
-                  <AvatarImage src={user?.profileImageUrl} />
+                  <AvatarImage src="" />
                   <AvatarFallback className="text-lg bg-blue-100 text-blue-600">
-                    {getInitials(user?.firstName, user?.lastName)}
+                    {getInitials(formData.firstName, formData.lastName)}
                   </AvatarFallback>
                 </Avatar>
                 
                 <h2 className="text-xl font-semibold text-gray-900">
-                  {user?.firstName} {user?.lastName}
+                  {formData.firstName} {formData.lastName}
                 </h2>
                 <p className="text-sm text-gray-500 mb-4">
                   {formData.title || "Sistem Kullanıcısı"}
@@ -146,19 +147,17 @@ export default function Profile() {
                 <div className="w-full space-y-3 text-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500">Üyelik Tarihi</span>
-                    <span className="text-gray-900">
-                      {user?.createdAt ? new Date(user.createdAt).toLocaleDateString('tr-TR') : 'Bilinmiyor'}
-                    </span>
+                    <span className="text-gray-900">15.01.2024</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500">Son Güncelleme</span>
                     <span className="text-gray-900">
-                      {user?.updatedAt ? new Date(user.updatedAt).toLocaleDateString('tr-TR') : 'Bilinmiyor'}
+                      {new Date().toLocaleDateString('tr-TR')}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500">Kullanıcı ID</span>
-                    <span className="text-gray-900 text-xs">{user?.id}</span>
+                    <span className="text-gray-900 text-xs">USR-001</span>
                   </div>
                 </div>
               </div>

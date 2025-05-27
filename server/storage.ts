@@ -89,6 +89,7 @@ export class MemStorage implements IStorage {
   private currentMedicalRecordId: number;
 
   constructor() {
+    this.users = new Map();
     this.departments = new Map();
     this.doctors = new Map();
     this.patients = new Map();

@@ -3,6 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useAuth } from "@/hooks/useAuth";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import Patients from "@/pages/patients";
@@ -12,6 +13,8 @@ import Departments from "@/pages/departments";
 import MedicalRecords from "@/pages/medical-records";
 import SettingsPage from "@/pages/settings";
 import Reports from "@/pages/reports";
+import Landing from "@/pages/landing";
+import Profile from "@/pages/profile";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 

@@ -79,7 +79,7 @@ export default function Sidebar() {
         
         {/* User Profile */}
         <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-          <div className="flex items-center">
+          <Link href="/profil" className="flex items-center w-full hover:bg-gray-50 rounded-lg p-2 -m-2 transition-colors">
             <div>
               <div className="inline-block h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center">
                 <span className="text-sm font-medium text-white">DM</span>
@@ -89,7 +89,7 @@ export default function Sidebar() {
               <p className="text-sm font-medium text-gray-700">Dr. Mehmet Özkan</p>
               <p className="text-xs text-gray-500">Sistem Yöneticisi</p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
