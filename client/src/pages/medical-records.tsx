@@ -313,6 +313,7 @@ export default function MedicalRecords() {
     
     const now = new Date();
     const thisMonth = medicalRecords.filter(record => {
+      if (!record.created_at) return false;
       const recordDate = new Date(record.created_at);
       return recordDate.getMonth() === now.getMonth() && recordDate.getFullYear() === now.getFullYear();
     }).length;
@@ -322,7 +323,7 @@ export default function MedicalRecords() {
     const lastWeek = new Date();
     lastWeek.setDate(lastWeek.getDate() - 7);
     const recentRecords = medicalRecords.filter(record => 
-      new Date(record.created_at) > lastWeek
+      record.created_at && new Date(record.created_at) > lastWeek
     ).length;
 
     return {
