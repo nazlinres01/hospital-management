@@ -20,6 +20,10 @@ import {
 } from "@shared/schema";
 
 export interface IStorage {
+  // User operations (for Replit Auth)
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
+  
   // Departments
   getDepartments(): Promise<Department[]>;
   getDepartment(id: number): Promise<Department | undefined>;
@@ -72,6 +76,7 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
+  private users: Map<string, User>;
   private departments: Map<number, Department>;
   private doctors: Map<number, Doctor>;
   private patients: Map<number, Patient>;
@@ -96,6 +101,22 @@ export class MemStorage implements IStorage {
     this.currentMedicalRecordId = 1;
 
     this.initializeSampleData();
+  }
+
+  // User operations (for Replit Auth)
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const existing = this.users.get(userData.id);
+    const user: User = {
+      ...userData,
+      createdAt: existing?.createdAt || new Date(),
+      updatedAt: new Date(),
+    };
+    this.users.set(userData.id, user);
+    return user;
   }
 
   private initializeSampleData() {
