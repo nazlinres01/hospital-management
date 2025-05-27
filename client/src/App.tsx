@@ -38,19 +38,44 @@ function Router() {
   );
 }
 
+function AuthWrapper() {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Sistem yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Auth />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        <Sidebar />
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <Header />
+          <main className="flex-1 overflow-y-auto">
+            <Router />
+          </main>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="flex h-screen bg-gray-50">
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <Header />
-            <main className="flex-1 overflow-y-auto">
-              <Router />
-            </main>
-          </div>
-        </div>
+        <AuthWrapper />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

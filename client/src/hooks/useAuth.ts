@@ -9,10 +9,16 @@ export function useAuth() {
   useEffect(() => {
     // Check if user is logged in from localStorage
     const checkAuth = () => {
-      const savedUser = localStorage.getItem('currentUser');
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
-        setIsAuthenticated(true);
+      try {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+          const userData = JSON.parse(savedUser);
+          setUser(userData);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        // Clear invalid data
+        localStorage.removeItem('currentUser');
       }
       setIsLoading(false);
     };
