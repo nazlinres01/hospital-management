@@ -17,6 +17,11 @@ export default function Landing() {
     window.location.href = "/api/login";
   };
 
+  const handleDemo = () => {
+    // Demo için örnek verilerle giriş simülasyonu
+    console.log("Demo başlatılıyor...");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
@@ -49,12 +54,23 @@ export default function Landing() {
             hastane operasyonlarınızı tek platformda yönetin.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={handleLogin} size="lg" className="bg-blue-600 hover:bg-blue-700">
-              Sisteme Giriş Yap
+            <Button onClick={handleLogin} size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+              🚀 Hemen Giriş Yap
             </Button>
-            <Button variant="outline" size="lg">
-              Demo İzle
+            <Button variant="outline" size="lg" onClick={handleDemo} className="text-lg px-8 py-3">
+              📺 Demo İzle
             </Button>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <p className="text-gray-600 mb-4">
+              Hesabınız yok mu? Replit ile hızlıca kaydolun!
+            </p>
+            <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+              <span>✅ Ücretsiz Kayıt</span>
+              <span>✅ Anında Erişim</span>
+              <span>✅ Güvenli Giriş</span>
+            </div>
           </div>
         </div>
       </section>
@@ -194,18 +210,89 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Özellikler Detay */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Neden MedSystem Pro?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Sağlık sektörüne özel geliştirilmiş özellikleri keşfedin
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Kolay Kullanım ve Hızlı Kurulum
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-green-600 text-sm">✓</span>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-gray-600">5 dakikada kurulum ve kullanıma hazır</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-green-600 text-sm">✓</span>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-gray-600">Sezgisel arayüz, minimal eğitim gereksinimi</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-green-600 text-sm">✓</span>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-gray-600">Mobil uyumlu, her yerden erişim</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-green-600 text-sm">✓</span>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-gray-600">7/24 teknik destek ve müşteri hizmetleri</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                🚀 Hemen Başlayın
+              </h4>
+              <p className="text-gray-600 mb-6">
+                Replit hesabınızla tek tıkla giriş yapın. Hesabınız yoksa otomatik olarak oluşturulur.
+              </p>
+              <Button onClick={handleLogin} className="w-full bg-blue-600 hover:bg-blue-700 mb-4">
+                Replit ile Giriş Yap
+              </Button>
+              <p className="text-xs text-gray-500 text-center">
+                Giriş yaparak <a href="#" className="text-blue-600 hover:underline">kullanım şartlarını</a> kabul etmiş olursunuz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Hastane Yönetiminizi Dijitalleştirin
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-blue-100 mb-8">
             Modern hastane yönetim sistemi ile operasyonlarınızı optimize edin, 
             hasta memnuniyetini artırın ve iş süreçlerinizi hızlandırın.
           </p>
-          <Button onClick={handleLogin} size="lg" className="bg-blue-600 hover:bg-blue-700">
-            Hemen Başlayın
+          <Button onClick={handleLogin} size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+            Ücretsiz Başlayın
           </Button>
         </div>
       </section>

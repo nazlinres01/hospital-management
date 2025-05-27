@@ -15,6 +15,7 @@ import SettingsPage from "@/pages/settings";
 import Reports from "@/pages/reports";
 import Landing from "@/pages/landing";
 import Profile from "@/pages/profile";
+import Login from "@/pages/login";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/raporlar" component={Reports} />
       <Route path="/ayarlar" component={SettingsPage} />
       <Route path="/profil" component={Profile} />
+      <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
   );
