@@ -10,6 +10,8 @@ import Appointments from "@/pages/appointments";
 import Doctors from "@/pages/doctors";
 import Departments from "@/pages/departments";
 import MedicalRecords from "@/pages/medical-records";
+import SettingsPage from "@/pages/settings";
+import Reports from "@/pages/reports";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 
@@ -22,6 +24,8 @@ function Router() {
       <Route path="/doktorlar" component={Doctors} />
       <Route path="/departmanlar" component={Departments} />
       <Route path="/tibbi-kayitlar" component={MedicalRecords} />
+      <Route path="/raporlar" component={Reports} />
+      <Route path="/ayarlar" component={SettingsPage} />
       <Route component={NotFound} />
     </Switch>
   );
