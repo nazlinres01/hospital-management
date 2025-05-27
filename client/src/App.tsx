@@ -9,6 +9,7 @@ import Patients from "@/pages/patients";
 import Appointments from "@/pages/appointments";
 import Doctors from "@/pages/doctors";
 import Departments from "@/pages/departments";
+import MedicalRecords from "@/pages/medical-records";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/randevular" component={Appointments} />
       <Route path="/doktorlar" component={Doctors} />
       <Route path="/departmanlar" component={Departments} />
+      <Route path="/tibbi-kayitlar" component={MedicalRecords} />
       <Route component={NotFound} />
     </Switch>
   );
