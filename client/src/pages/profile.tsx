@@ -26,6 +26,10 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export default function Profile() {
   const { toast } = useToast();
+  const { user } = useAuth();
+  
+  // Type guard for user data
+  const userData = user as any;
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "Mehmet",

@@ -54,6 +54,10 @@ export default function Auth() {
             title: "Giriş başarılı!",
             description: "Hastane yönetim sistemine hoş geldiniz.",
           });
+          // Force page refresh to trigger auth check
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         } else {
           throw new Error("Geçersiz email veya şifre");
         }
@@ -82,6 +86,10 @@ export default function Auth() {
           title: "Kayıt başarılı!",
           description: "Hesabınız oluşturuldu ve giriş yapıldı.",
         });
+        // Force page refresh to trigger auth check
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (error: any) {
       toast({

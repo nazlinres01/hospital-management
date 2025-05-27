@@ -28,6 +28,9 @@ export default function Sidebar() {
   const [location] = useLocation();
   const { user } = useAuth();
 
+  // Type guard for user
+  const userData = user as any;
+
   return (
     <div className="hidden lg:flex lg:w-72 lg:flex-col">
       <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-0 overflow-y-auto">
@@ -85,16 +88,16 @@ export default function Sidebar() {
             <div>
               <div className="inline-block h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center">
                 <span className="text-sm font-medium text-white">
-                  {user ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}` : 'U'}
+                  {userData ? `${userData.firstName?.[0] || ''}${userData.lastName?.[0] || ''}` : 'U'}
                 </span>
               </div>
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-700">
-                {user ? `${user.firstName} ${user.lastName}` : "Kullanıcı"}
+                {userData ? `${userData.firstName} ${userData.lastName}` : "Kullanıcı"}
               </p>
               <p className="text-xs text-gray-500">
-                {user?.department || "Sistem Kullanıcısı"}
+                {userData?.department || "Sistem Kullanıcısı"}
               </p>
             </div>
           </Link>
