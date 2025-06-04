@@ -2,6 +2,10 @@
 
 A modern, comprehensive hospital management system built with React and Express.js, featuring PostgreSQL database integration for professional healthcare facility operations.
 
+
+![Resim13](https://github.com/user-attachments/assets/399f8b78-8e17-4809-8130-d62675a38ce0)
+
+
 ## Features
 
 ### Authentication System
